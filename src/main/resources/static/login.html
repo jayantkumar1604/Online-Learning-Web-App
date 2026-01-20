@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Online Learning</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="center">
+
+<div class="card">
+    <h2 style="text-align:center;">🔐 Login</h2>
+    <p style="text-align:center; color:#666; margin-bottom:20px;">
+        Access your learning dashboard
+    </p>
+
+    <input
+            type="text"
+            id="username"
+            placeholder="Username"
+            autocomplete="username"
+            onkeypress="handleEnter(event)"
+    >
+
+    <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            autocomplete="current-password"
+            onkeypress="handleEnter(event)"
+    >
+
+    <button id="loginBtn" onclick="handleLogin()">Login</button>
+
+    <p id="msg" style="color:red; text-align:center; margin-top:12px;"></p>
+</div>
+
+<script src="app.js"></script>
+
+<script>
+    /* UX Enhancements only (does NOT replace app.js login logic) */
+
+    function handleLogin() {
+        const btn = document.getElementById("loginBtn");
+        btn.innerText = "Logging in...";
+        btn.disabled = true;
+
+        login();
+
+        setTimeout(() => {
+            btn.innerText = "Login";
+            btn.disabled = false;
+        }, 1500);
+    }
+
+    function handleEnter(event) {
+        if (event.key === "Enter") {
+            handleLogin();
+        }
+    }
+</script>
+
+</body>
+</html>

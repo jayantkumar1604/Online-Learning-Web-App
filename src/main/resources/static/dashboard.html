@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Online Learning</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<header>
+    <h2>📘 Online Learning Dashboard</h2>
+    <button onclick="logout()">Logout</button>
+</header>
+
+<section style="padding: 20px;">
+    <h3 class="title">Available Courses</h3>
+
+    <!-- 🔍 Search -->
+    <input
+            type="text"
+            id="search"
+            placeholder="🔍 Search courses..."
+            style="padding:10px; width:100%; max-width:400px; border-radius:8px; border:1px solid #ccc;"
+            onkeyup="filterCourses()"
+    >
+</section>
+
+<!-- 🧩 Course Container -->
+<section id="courseGrid" class="course-grid"></section>
+
+<!-- 🚫 Empty State -->
+<p id="emptyMsg" style="text-align:center; color:#777; display:none;">
+    No courses found
+</p>
+
+<script src="app.js"></script>
+
+<script>
+    /* ============== FRONTEND INTERACTION ONLY ============== */
+
+    function filterCourses() {
+        const search = document.getElementById("search").value.toLowerCase();
+        const courses = document.querySelectorAll(".course");
+        let visible = 0;
+
+        courses.forEach(course => {
+            const text = course.innerText.toLowerCase();
+            if (text.includes(search)) {
+                course.style.display = "block";
+                visible++;
+            } else {
+                course.style.display = "none";
+            }
+        });
+
+        document.getElementById("emptyMsg").style.display =
+            visible === 0 ? "block" : "none";
+    }
+</script>
+
+</body>
+</html>
