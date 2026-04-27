@@ -11,15 +11,17 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
 
-                        // ✅ allow frontend files
+                        // ✅ allow ALL static resources properly
                         .requestMatchers(
                                 "/",
                                 "/login.html",
                                 "/dashboard.html",
+                                "/topics.html",   // 🔥 IMPORTANT FIX
                                 "/style.css",
                                 "/app.js",
                                 "/favicon.ico"
@@ -28,7 +30,7 @@ public class SecurityConfig {
                         // ✅ secure backend APIs
                         .requestMatchers("/api/**").authenticated()
 
-                        // ✅ allow everything else
+                        // allow others
                         .anyRequest().permitAll()
                 )
                 .httpBasic(Customizer.withDefaults());

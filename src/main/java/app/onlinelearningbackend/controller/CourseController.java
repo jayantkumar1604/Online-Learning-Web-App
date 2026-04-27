@@ -1,7 +1,7 @@
 package app.onlinelearningbackend.controller;
 
 import app.onlinelearningbackend.model.Course;
-import app.onlinelearningbackend.repository.CourseRepository;
+import app.onlinelearningbackend.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,16 +13,15 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    private CourseRepository courseRepository;
+    private CourseService courseService;
 
     @GetMapping
     public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+        return courseService.getAllCourses();
     }
 
     @PostMapping
     public Course addCourse(@RequestBody Course course) {
-        return courseRepository.save(course);
+        return courseService.addCourse(course);
     }
 }
-

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @Entity
@@ -18,5 +20,8 @@ public class Course {
 
     private String title;
     private String description;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Topic> topics;
 
 }
